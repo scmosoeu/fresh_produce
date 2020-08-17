@@ -24,5 +24,3 @@ class QuotesSpider(scrapy.Spider):
                     'date': DATE, 
                     index: item.css('td ::text').extract()
                 }
-                
-          
