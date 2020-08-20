@@ -54,5 +54,7 @@ if __name__ == "__main__":
 
     params = urllib.parse.quote_plus(f'{server_info};DATABASE=jhb_market;Trusted_Connection=yes')
     engine = create_engine('mssql+pyodbc:///?odbc_connect=%s' % params)
-
+        
     Base.metadata.create_all(engine)
+    print("Tables created successfully")
+        
