@@ -9,7 +9,7 @@ class Commodity(Base):
 
     __tablename__ = "commodity_raw"
 
-    id = Column(Integer, primary_key=True)
+    rowid = Column(Integer, primary_key=True)
     date = Column(String)
     commodity = Column(String)
     total_value_sold = Column(String)
@@ -22,7 +22,7 @@ class Container(Base):
 
     __tablename__ = 'container_raw'
 
-    id = Column(Integer, primary_key=True)
+    rowid = Column(Integer, primary_key=True)
     date = Column(String)
     commodity = Column(String)
     container = Column(String)
@@ -36,7 +36,7 @@ class ProductCombination(Base):
     
     __tablename__ = 'product_combination_raw'
 
-    id = Column(Integer, primary_key=True)
+    rowid = Column(Integer, primary_key=True)
     date = Column(String)
     commodity = Column(String)
     container = Column(String)
@@ -55,7 +55,7 @@ class ScrappingDates(Base):
 
     __tablename__ = 'scrapping_date'
 
-    id = Column(Integer, primary_key=True)
+    rowid = Column(Integer, primary_key=True)
     date = Column(String) 
 
 
