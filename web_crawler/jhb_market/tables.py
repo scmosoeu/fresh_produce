@@ -50,11 +50,19 @@ class ProductCombination(Base):
     ave_per_kg = Column(String)
     highest_price_per_kg = Column(String)
 
+
+class ScrappingDates(Base):
+
+    __tablename__ = 'scrapping_date'
+
+    id = Column(Integer, primary_key=True)
+    date = Column(String) 
+
+
 if __name__ == "__main__":
 
-    params = urllib.parse.quote_plus(f'{server_info};DATABASE=jhb_market;Trusted_Connection=yes')
+    params = urllib.parse.quote_plus(server_info)
     engine = create_engine('mssql+pyodbc:///?odbc_connect=%s' % params)
         
     Base.metadata.create_all(engine)
-    print("Tables created successfully")
         
