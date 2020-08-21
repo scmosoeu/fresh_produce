@@ -7,7 +7,7 @@ Base = declarative_base()
 
 class Commodity(Base):
 
-    __tablename__ = "product_raw"
+    __tablename__ = "commodity_raw"
 
     id = Column(Integer, primary_key=True)
     date = Column(String)
