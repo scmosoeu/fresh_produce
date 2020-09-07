@@ -11,7 +11,7 @@ class Product(Base):
     __tablename__ = 'product'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False, unique=True)
+    name = Column(String(50), nullable=False, unique=True)
 
 
 class Container(Base):
@@ -19,7 +19,7 @@ class Container(Base):
     __tablename__ = 'container'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False, unique=True)
+    name = Column(String(100), nullable=False, unique=True)
 
 
 class Inventory(Base):
@@ -27,8 +27,8 @@ class Inventory(Base):
     __tablename__ = 'inventory'
 
     id = Column(Integer, primary_key=True)
-    date = Column(String, nullable=False)
-    name = Column(String, nullable=False)
+    date = Column(DateTime nullable=False)
+    name = Column(String(50), nullable=False)
     available = Column(Integer, nullable=False)
 
 class ProductCombo(Base):
@@ -36,7 +36,7 @@ class ProductCombo(Base):
     __tablename__ = 'product_combination'
 
     id = Column(Integer, primary_key=True)  
-    name = Column(String, nullable=False, unique=True)
+    name = Column(String(200), nullable=False, unique=True)
 
 
 class Sales(Base):
@@ -44,7 +44,7 @@ class Sales(Base):
     __tablename__ = 'sales'
 
     id = Column(Integer, primary_key=True)
-    date = Column(String, nullable=False)
+    date = Column(DateTime, nullable=False)
     # Some foreignkey
     quantity_sold = Column(Integer, nullable=False)
     kg_sold = Column(Float, nullable=False)
