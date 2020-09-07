@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine, Column, String, Integer, Float, ForeignKey, DateTime
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 from engine_info import server_info
 import urllib
 
