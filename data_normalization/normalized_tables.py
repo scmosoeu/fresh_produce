@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, String, Integer, Float, ForeignKey, DateTime
+from sqlalchemy import create_engine, Column, Table, String, Integer, Float, ForeignKey, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from engine_info import server_info
@@ -6,10 +6,15 @@ import urllib
 
 Base = declarative_base()
 
-product_container = Table('product_container', Base.metadata,
-    Column('product_id', Integer, ForeignKey('product.id'), primary_key=True),
-    Column('container_id', Integer, ForeignKey('container.id'), primary_key=True)
-)
+
+class ProductContainer(Base):
+
+    __tablename__ = 'product_container'
+
+    id = Column(Integer, primary_key=True)
+    product_id = Column(Integer, ForeignKey('product.id'))
+    container_id = Column(Integer, ForeignKey('container.id'))
+    inventory = relationship('Inventory', backref='inventory')
 
 class Product(Base):
 
@@ -17,22 +22,16 @@ class Product(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False, unique=True)
-    containers = relationship('Container', secondary=product_container)
+    product_container = relationship('ProductContainer', backref='product_container')
 
-
-container_product_combination = Table('container_product_combination', Base.metadata,
-    Column('container_id', Integer, ForeignKey('product.id'), primary_key=True),
-    Column('product_combination_id', Integer, ForeignKey('product_combination.id'), primary_key=True)
-)
 
 class Container(Base):
 
     __tablename__ = 'container'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String(100), nullable=False, unique=True)
-    product_id = Column(Integer, ForeignKey('product.id'), nullable=False)
-    inventories = relationship('Inventory', secondary=product_container)
+    name = Column(String(100), nullable=False)
+    product_container = relationship('ProductContainer', backref='product_container')
     product_combinations = relationship('ProductCombo', backref='product_combination')
 
 
@@ -44,15 +43,24 @@ class Inventory(Base):
     date = Column(DateTime, nullable=False)
     name = Column(String(50), nullable=False)
     available = Column(Integer, nullable=False)
-    container_id = Column(Integer, ForeignKey('container.id'), nullable=False)
+    product_container_id = Column(Integer, ForeignKey('product_container.id'), nullable=False)
+
+
+class ContainerProductCombination(Base):
+
+    __tablename__ = 'container_product_combination'
+
+    id = Column(Integer, primary_key=True)
+    container_id = Column(Integer, ForeignKey('product.id'))
+    product_combination_id = Column(Integer, ForeignKey('product_combination.id'))
 
 class ProductCombo(Base):
 
     __tablename__ = 'product_combination'
 
     id = Column(Integer, primary_key=True)  
-    name = Column(String(200), nullable=False, unique=True)
-    container_id = Column(Integer, ForeignKey('container.id'), nullable=False)
+    name = Column(String(200), nullable=False)
+    container_id = Column(Integer, ForeignKey('container_product_combination.id'), nullable=False)
     product_sales = relationship('Sales', backref='sales')
 
 
