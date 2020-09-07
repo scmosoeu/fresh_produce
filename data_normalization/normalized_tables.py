@@ -13,6 +13,8 @@ class Product(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False, unique=True)
 
+    containers = relationship('Container', backref='product')
+
 
 class Container(Base):
 
@@ -21,15 +23,19 @@ class Container(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False, unique=True)
 
+    product_id = Column(Integer, ForeignKey('product.id'), nullable=False)
+
 
 class Inventory(Base):
 
     __tablename__ = 'inventory'
 
     id = Column(Integer, primary_key=True)
-    date = Column(DateTime nullable=False)
+    date = Column(DateTime, nullable=False)
     name = Column(String(50), nullable=False)
     available = Column(Integer, nullable=False)
+
+    container_id = Column(Integer, ForeignKey('container.id'), nullable=False)
 
 class ProductCombo(Base):
 
