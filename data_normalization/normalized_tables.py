@@ -12,7 +12,6 @@ class Product(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False, unique=True)
-
     containers = relationship('Container', backref='product')
 
 
@@ -22,8 +21,9 @@ class Container(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False, unique=True)
-
     product_id = Column(Integer, ForeignKey('product.id'), nullable=False)
+    inventories = relationship('Inventory', backref='inventory')
+    product_combinations = relationship('ProductCombo', backref='product_combination')
 
 
 class Inventory(Base):
@@ -34,7 +34,6 @@ class Inventory(Base):
     date = Column(DateTime, nullable=False)
     name = Column(String(50), nullable=False)
     available = Column(Integer, nullable=False)
-
     container_id = Column(Integer, ForeignKey('container.id'), nullable=False)
 
 class ProductCombo(Base):
@@ -43,6 +42,8 @@ class ProductCombo(Base):
 
     id = Column(Integer, primary_key=True)  
     name = Column(String(200), nullable=False, unique=True)
+    container_id = Column(Integer, ForeignKey('container.id'), nullable=False)
+    product_sales = relationship('Sales', backref='sales')
 
 
 class Sales(Base):
@@ -51,12 +52,12 @@ class Sales(Base):
 
     id = Column(Integer, primary_key=True)
     date = Column(DateTime, nullable=False)
-    # Some foreignkey
     quantity_sold = Column(Integer, nullable=False)
     kg_sold = Column(Float, nullable=False)
     cost = Column(Float, nullable=False)
     average_price = Column(Float, nullable=False)
     highest_price = Column(Float, nullable=False)
+    product_combination_id = Column(Integer, ForeignKey('product_combination.id'), nullable=False)
 
 
 if __name__ == "__main__":
