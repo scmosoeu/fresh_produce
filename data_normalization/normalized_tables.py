@@ -27,15 +27,15 @@ class Inventory(Base):
     __tablename__ = 'inventory'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String)
-    available = Column(Integer)
+    date = Column(String, nullable=False)
+    name = Column(String, nullable=False)
+    available = Column(Integer, nullable=False)
 
 class ProductCombo(Base):
 
     __tablename__ = 'product_combination'
 
-    id = Column(Integer, primary_key=True)
-    date = Column(String)
+    id = Column(Integer, primary_key=True)  
     name = Column(String, nullable=False, unique=True)
 
 
@@ -44,13 +44,13 @@ class Sales(Base):
     __tablename__ = 'sales'
 
     id = Column(Integer, primary_key=True)
-    date = Column(String)
+    date = Column(String, nullable=False)
     # Some foreignkey
-    quantity_sold = Column(Integer)
-    kg_sold = Column(Float)
-    cost = Column(Float)
-    average_price = Column(Float)
-    highest_price = Column(Float)
+    quantity_sold = Column(Integer, nullable=False)
+    kg_sold = Column(Float, nullable=False)
+    cost = Column(Float, nullable=False)
+    average_price = Column(Float, nullable=False)
+    highest_price = Column(Float, nullable=False)
 
 
 if __name__ == "__main__":
