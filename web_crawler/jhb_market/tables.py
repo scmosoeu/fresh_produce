@@ -7,7 +7,7 @@ Base = declarative_base()
 
 class Commodity(Base):
 
-    __tablename__ = "commodity_raw"
+    __tablename__ = "Joburg_Fresh_produce_commodity_raw"
 
     rowid = Column(Integer, primary_key=True, autoincrement=True)
     date = Column(String)
@@ -20,7 +20,7 @@ class Commodity(Base):
 
 class Container(Base):
 
-    __tablename__ = 'container_raw'
+    __tablename__ = 'Joburg_Fresh_produce_container_raw'
 
     rowid = Column(Integer, primary_key=True, autoincrement=True)
     date = Column(String)
@@ -34,7 +34,7 @@ class Container(Base):
 
 class ProductCombination(Base):
     
-    __tablename__ = 'product_combination_raw'
+    __tablename__ = 'Joburg_Fresh_produce_product_combination_raw'
 
     rowid = Column(Integer, primary_key=True, autoincrement=True)
     date = Column(String)
@@ -53,7 +53,7 @@ class ProductCombination(Base):
 
 class ScrappingDates(Base):
 
-    __tablename__ = 'scrapping_date'
+    __tablename__ = 'Joburg_Fresh_produce_scrapping_date'
 
     rowid = Column(Integer, primary_key=True, autoincrement=True)
     date = Column(String) 
