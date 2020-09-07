@@ -6,14 +6,24 @@ import urllib
 
 Base = declarative_base()
 
+product_container = Table('product_container', Base.metadata,
+    Column('product_id', Integer, ForeignKey('product.id'), primary_key=True),
+    Column('container_id', Integer, ForeignKey('container.id'), primary_key=True)
+)
+
 class Product(Base):
 
     __tablename__ = 'product'
 
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False, unique=True)
-    containers = relationship('Container', backref='product')
+    containers = relationship('Container', secondary=product_container)
 
+
+container_product_combination = Table('container_product_combination', Base.metadata,
+    Column('container_id', Integer, ForeignKey('product.id'), primary_key=True),
+    Column('product_combination_id', Integer, ForeignKey('product_combination.id'), primary_key=True)
+)
 
 class Container(Base):
 
@@ -22,7 +32,7 @@ class Container(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False, unique=True)
     product_id = Column(Integer, ForeignKey('product.id'), nullable=False)
-    inventories = relationship('Inventory', backref='inventory')
+    inventories = relationship('Inventory', secondary=product_container)
     product_combinations = relationship('ProductCombo', backref='product_combination')
 
 
