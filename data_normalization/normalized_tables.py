@@ -65,7 +65,7 @@ class Sales(Base):
     date = Column(DateTime, nullable=False)
     quantity_sold = Column(Integer, nullable=False)
     kg_sold = Column(Float, nullable=False)
-    cost = Column(Float, nullable=False)
+    value = Column(Float, nullable=False)
     average_price = Column(Float, nullable=False)
     highest_price = Column(Float, nullable=False)
     product_combination_id = Column(Integer, ForeignKey('product_combination.id'), nullable=False)
