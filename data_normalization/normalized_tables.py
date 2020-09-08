@@ -17,7 +17,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
     product_sales = db.relationship('Sales', backref='product_sale')
-    product_inventories = db.elationship('Inventory', backref='product_inventory')
+    product_inventories = db.relationship('Inventory', backref='product_inventory')
 
 
 class Container(db.Model):
