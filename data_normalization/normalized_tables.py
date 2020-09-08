@@ -6,36 +6,24 @@ import urllib
 
 Base = declarative_base()
 
-class ProductContainer(Base):
-
-    __tablename__ = 'product_container'
-
-    id = Column(Integer, primary_key=True)
-    product_id = Column(Integer, ForeignKey('product.id'))
-    container_id = Column(Integer, ForeignKey('container.id'))
-    inventory = relationship('Inventory', backref='inventory')
-
 class Product(Base):
 
     __tablename__ = 'product'
 
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False, unique=True)
-    product_container = relationship('ProductContainer', backref='product_container')
+    product_sales = relationship('Sales', backref='product_sale')
+    product_inventories = relationship('Inventory', backref='product_inventory')
 
-container_product_combination = Table('container_product_combination', Base.metadata,
-    Column('container_id', Integer, ForeignKey('container.id'), primary_key=True),
-    Column('product_combination_id', Integer, ForeignKey('product_combination.id'), primary_key=True)
-)
 
 class Container(Base):
 
     __tablename__ = 'container'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String(100), nullable=False)
-    product_container = relationship('ProductContainer', backref='product_container')
-    product_combinations = relationship('ProductCombination', secondary=container_product_combination)
+    name = Column(String(100), nullable=False, unique=True)
+    container_sales = relationship('Sales', backref='container_sale')
+    container_inventories = relationship('Inventory', backref='container_inventory')
 
 
 class Inventory(Base):
@@ -45,7 +33,8 @@ class Inventory(Base):
     id = Column(Integer, primary_key=True)
     date = Column(DateTime, nullable=False)
     available = Column(Integer, nullable=False)
-    product_container_id = Column(Integer, ForeignKey('product_container.id'), nullable=False)
+    product_id = Column(Integer, ForeignKey('product.id'), nullable=False)
+    container_id = Column(Integer, ForeignKey('container.id'), nullable=False)
 
 
 class ProductCombination(Base):
@@ -53,8 +42,8 @@ class ProductCombination(Base):
     __tablename__ = 'product_combination'
 
     id = Column(Integer, primary_key=True)  
-    name = Column(String(200), nullable=False)
-    product_sales = relationship('Sales', backref='sales')
+    name = Column(String(200), nullable=False, unique=True)
+    combination_sales = relationship('Sales', backref='combination_sale')
 
 
 class Sales(Base):
@@ -69,7 +58,8 @@ class Sales(Base):
     average_price = Column(Float, nullable=False)
     highest_price = Column(Float, nullable=False)
     product_combination_id = Column(Integer, ForeignKey('product_combination.id'), nullable=False)
-
+    container_id = Column(Integer, ForeignKey('container.id'), nullable=False)
+    product_id = Column(Integer, ForeignKey('product.id'), nullable=False)
 
 if __name__ == "__main__":
     
