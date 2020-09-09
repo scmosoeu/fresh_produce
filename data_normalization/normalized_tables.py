@@ -16,7 +16,9 @@ class Product(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
-    product_sales = db.relationship('Sales', backref='product_sale')
+    product_sales = db.relationship('Sales'
+    
+    , backref='product_sale')
     product_inventories = db.relationship('Inventory', backref='product_inventory')
 
 
@@ -35,7 +37,7 @@ class Inventory(db.Model):
     __tablename__ = 'inventory'
 
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime, nullable=False)
+    date = db.Column(db.DateTime, nullable=False, db.ForeignKey('master_date.date_key'))
     available = db.Column(db.Integer, nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
     container_id = db.Column(db.Integer, db.ForeignKey('container.id'), nullable=False)
@@ -55,7 +57,7 @@ class Sales(db.Model):
     __tablename__ = 'sales'
 
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime, nullable=False)
+    date = db.Column(db.DateTime, nullable=False, db.ForeignKey('master_date.date_key'))
     quantity_sold = db.Column(db.Integer, nullable=False)
     kg_sold = db.Column(db.Float, nullable=False)
     value = db.Column(db.Float, nullable=False)
@@ -64,6 +66,22 @@ class Sales(db.Model):
     product_combination_id = db.Column(db.Integer, db.ForeignKey('product_combination.id'), nullable=False)
     container_id = db.Column(db.Integer, db.ForeignKey('container.id'), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+
+class MasterDate(db.Model):
+
+    __tablename__ = 'master_date'
+    db.
+    date_key = db.Column(db.DateTime, primary_key=True)
+    calendar_date = db.Column(db.String(20), nullable=False)
+    year = db.Column(db.Integer, nullable=False)
+    half_of_year = db.Column(db.integer, nullable=False)
+    quarter = db.Column(db.Integer, nullable=False)
+    month = db.Column(db.String(20), nullable=False)
+    week_of_year = db.Column(db.Integer, nullable=False)
+    day = db.Column(db.String(20), nullable=False)
+
+    inventory_dates = db.relationship('Inventory', backref='inventory_date')
+    invoice_dates = db.relationship('Sales', backref='sales_date')
 
 if __name__ == "__main__":
     
