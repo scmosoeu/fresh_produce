@@ -71,10 +71,6 @@ class MasterDate(db.Model):
 
     __tablename__ = 'master_date'
     date_key = db.Column(db.DateTime, primary_key=True)
-    calendar_date = db.Column(db.String(20), nullable=False)
-    year = db.Column(db.Integer, nullable=False)
-    half_of_year = db.Column(db.Integer, nullable=False)
-    quarter = db.Column(db.Integer, nullable=False)
     month = db.Column(db.String(20), nullable=False)
     week_of_year = db.Column(db.Integer, nullable=False)
     day = db.Column(db.String(20), nullable=False)
