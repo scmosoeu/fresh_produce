@@ -2,16 +2,15 @@
 import pandas as pd
 import numpy as np
 
-# Plotting libraries
-import plotly.graph_objects as go
-
 # App libraries 
 import streamlit as st
 
-# DATABASE
+# import sql DATABASE
 from database.sql_tables import database    
 
 ############################### STREAMLIT APP #########################################################
+
+sales = database['sales']
 
 commodity = sales['commodity'].unique()
 
