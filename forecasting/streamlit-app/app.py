@@ -29,6 +29,6 @@ price = df_sales.groupby('date')['ave_per_kg'].mean()
 price = pd.DataFrame(price)
 price = price.asfreq('B', method='backfill')
 
-result = plot_seasonality(price['ave_per_kg'], selected_commodity)
+result = plot_seasonality(price, selected_commodity)
 
 st.plotly_chart(result)

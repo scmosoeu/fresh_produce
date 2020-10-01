@@ -20,7 +20,7 @@ def plot_seasonality(data, product):
     --------
     A plotly graph object
     """ 
-    seasoned_data = seasonal_decompose(data)
+    seasoned_data = seasonal_decompose(data['ave_per_kg'])
 
     fig = make_subplots(
         rows=4, 
@@ -32,7 +32,7 @@ def plot_seasonality(data, product):
     fig.append_trace(
         go.Scatter(
             x=data.index,
-            y=data.observed
+            y=seasoned_data.observed.values
         ),
         row=1,
         col=1
@@ -40,7 +40,7 @@ def plot_seasonality(data, product):
     fig.append_trace(
         go.Scatter(
             x=data.index,
-            y=data.trend
+            y=seasoned_data.trend.values
         ),
         row=2,
         col=1
@@ -48,7 +48,7 @@ def plot_seasonality(data, product):
     fig.append_trace(
         go.Scatter(
             x=data.index,
-            y=data.seasonal
+            y=seasoned_data.seasonal.values
         ),
         row=3,
         col=1
@@ -56,7 +56,7 @@ def plot_seasonality(data, product):
     fig.append_trace(
         go.Scatter(
             x=data.index,
-            y=data.resid
+            y=seasoned_data.resid.values
         ),
         row=4,
         col=1
