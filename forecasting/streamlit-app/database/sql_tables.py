@@ -20,6 +20,6 @@ sales = pd.read_sql_table('Joburg_Fresh_produce_combined_cleaned', connection)
 inventory = pd.read_sql_table('Joburg_Fresh_produce_container_cleaned', connection)
 
 database = {
-    'sales':sales,
+    'sales':sales[sales['total_value_sold'] > 0],
     'inventory':inventory
 }
