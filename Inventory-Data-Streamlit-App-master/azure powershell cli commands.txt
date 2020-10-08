@@ -1,0 +1,28 @@
+#Download powershell
+#Launch your favorite command line prompt
+#Change directory to where docker and script files are located
+cd C:\Users\user\Documents\GitHub\fresh_produce\Inventory-Data-Streamlit-App-master
+#Login to Azure account via powershell by typing the following
+powershell
+az login
+
+#Create a Resource Group to house the Docker Container Registry
+az group create -l southafricanorth -n InventoryApp
+az acr create --name InventoryAppRegistry --resource-group InventoryApp --sku basic --admin-enabled true
+
+#Modify Dockerfile with appropriate Streamlit App script - CMD...
+#Don't change config.toml and credentials.toml
+#Modify Docker 'requirements.txt' file with all the Docker "virtual environment" dependencies for Streamlit App
+
+#Build the docker image and save to Azure Container Registry
+az acr build --registry InventoryAppRegistry --resource-group InventoryApp --image inventory-app .
+
+#Deploy a Web App from a Container Image
+az appservice plan create -g InventoryApp -n InventoryAppServicePlan -l southafricanorth --is-linux --sku B1
+
+#Deploy app
+az webapp create -g InventoryApp -p InventoryAppServicePlan -n inventory-web-app -i inventoryappregistry.azurecr.io/census-app:latest
+
+#Redeploying your web app
+#Update streamlt script then run the following powershell command
+az acr build --registry CensusAppRegistry --resource-group CensusApp --image census-app .
