@@ -13,19 +13,16 @@ from visuals.decomposition import plot_seasonality
 
 ############################### STREAMLIT APP #########################################################
 
-sales = database['sales']
-inventory = database['inventory']
-
-commodity = sales['commodity'].unique()
+commodity = database['Commodities'].unique()
 
 selected_commodity = st.sidebar.selectbox(
     label="Commodity",
     options=commodity
 )
 
-df_sales = sales[sales['commodity'] == selected_commodity][['date', 'ave_per_kg']]
+df = database[database['Commodities'] == selected_commodity][['Date', 'avg_per_kg']]
 
-price = df_sales.groupby('date')['ave_per_kg'].mean()
+price = df.groupby('Date')['avg_per_kg'].mean()
 price = pd.DataFrame(price)
 price = price.asfreq('B', method='backfill')
 

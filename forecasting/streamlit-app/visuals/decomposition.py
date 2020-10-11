@@ -2,6 +2,7 @@
 import pandas as pd
 import numpy as np
 from statsmodels.tsa.seasonal import seasonal_decompose
+from statsmodels.tsa.filters.hp_filter import hpfilter
 
 # Plotting libraries
 import plotly.graph_objects as go
@@ -20,7 +21,8 @@ def plot_seasonality(data, product):
     --------
     A plotly graph object
     """ 
-    seasoned_data = seasonal_decompose(data['ave_per_kg'])
+    seasoned_data = seasonal_decompose(data['avg_per_kg'])
+
 
     fig = make_subplots(
         rows=4, 
