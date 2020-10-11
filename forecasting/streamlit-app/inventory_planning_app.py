@@ -69,9 +69,9 @@ def main():
         st.subheader("Dashboard Trends")
         st.subheader("==========================================================")
 
-        st.markdown(frame1, unsafe_allow_html=True)
+        st.markdown(frame[0], unsafe_allow_html=True)
 
-        st.markdown(frame2, unsafe_allow_html=True)
+        st.markdown(frame[1], unsafe_allow_html=True)
 
 
         st.subheader("==========================================================")
