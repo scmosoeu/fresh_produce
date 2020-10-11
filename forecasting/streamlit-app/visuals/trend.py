@@ -6,7 +6,7 @@ from statsmodels.tsa.filters.hp_filter import hpfilter
 # Plotting libraries
 import plotly.graph_objects as go
 
-def plot_trend(data, product):
+def plot_trend(data, col, product):
     """
     Returns ....
 
@@ -14,6 +14,8 @@ def plot_trend(data, product):
     -----------
     data: DataFrame
         A dataframe containing a series of which a trend is to be determined
+    col: str
+        A column name from which the trebd is to be determined
     product: str
         A column name of series from which a trend is to be determined
 
@@ -21,13 +23,13 @@ def plot_trend(data, product):
     --------
     A plotly graph object
     """ 
-    price_cycle, price_trend = hpfilter(data['avg_per_kg'])
+    price_cycle, price_trend = hpfilter(data[col])
 
     fig = go.Figure(
         data=[
             go.Scatter(
                 x=data.index,
-                y=data['avg_per_kg'],
+                y=data[col],
                 name='Average'
             ),
             go.Scatter(
