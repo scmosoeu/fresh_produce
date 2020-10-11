@@ -20,7 +20,28 @@ selected_commodity = st.sidebar.selectbox(
     options=commodity
 )
 
-df = database[database['Commodities'] == selected_commodity][['Date', 'avg_per_kg']]
+weight = database[database['Commodities'] == selected_commodity]['Weight_Kg'].unique()
+
+selected_weight = st.sidebar.selectbox(
+    label="Weight",
+    options=weight
+)
+
+grade = database[
+    (database['Commodities'] == selected_commodity) & \
+    (database['Weight_Kg'] == selected_weight)
+]['Size_Grade'].unique()
+
+selected_grade = st.sidebar.selectbox(
+    label="Size Grade",
+    options=grade
+)
+
+df = database[
+    (database['Commodities'] == selected_commodity) & \
+    (database['Weight_Kg'] == selected_weight) & \
+    (database['Size_Grdae'] == selected_grade)
+][['Date', 'avg_per_kg']]
 
 price = df.groupby('Date')['avg_per_kg'].mean()
 price = pd.DataFrame(price)

@@ -6,6 +6,9 @@ from statsmodels.tsa.filters.hp_filter import hpfilter
 # Plotting libraries
 import plotly.graph_objects as go
 
+# Import custom functions
+from models.arima_model import arima_forecast
+
 def plot_trend(data, col, product):
     """
     Returns ....
