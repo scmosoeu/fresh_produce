@@ -9,7 +9,7 @@ import streamlit as st
 from database.sql_tables import database
 
 # Custom libraries
-from visuals.decomposition import plot_seasonality
+from visuals.trend import plot_trend
 
 ############################### STREAMLIT APP #########################################################
 
@@ -26,6 +26,6 @@ price = df.groupby('Date')['avg_per_kg'].mean()
 price = pd.DataFrame(price)
 price = price.asfreq('B', method='backfill')
 
-result = plot_seasonality(price, selected_commodity)
+result = plot_trend(price, selected_commodity)
 
 st.plotly_chart(result)
