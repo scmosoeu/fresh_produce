@@ -9,7 +9,7 @@ import plotly.graph_objects as go
 # Import custom functions
 from models.arima_model import arima_forecast
 
-def plot_trend(data, col, product):
+def plot_forecast(data, col, product, periods):
     """
     Returns ....
 
@@ -21,12 +21,16 @@ def plot_trend(data, col, product):
         A column name from which the trend is to be determined
     product: str
         A column name of series from which a trend is to be determined
+    periods: int
+        Forecast horizon in units of the series
 
     Returns
     --------
     A plotly graph object
     """ 
     price_cycle, price_trend = hpfilter(data[col])
+
+    predictions = arima_forecast(data, 'avg_per_kg', periods)
 
     fig = go.Figure(
         data=[
@@ -51,4 +55,5 @@ def plot_trend(data, col, product):
         )
     )
     return fig
+
 

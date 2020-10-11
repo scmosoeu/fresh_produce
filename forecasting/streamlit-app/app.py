@@ -10,7 +10,7 @@ import datetime
 from database.sql_tables import database
 
 # Custom libraries
-from visuals.trend import plot_trend
+from visuals.forecasts import plot_forecast
 
 ############################### STREAMLIT APP #########################################################
 
@@ -56,6 +56,6 @@ price = df.groupby('Date')['avg_per_kg'].mean()
 price = pd.DataFrame(price)
 price = price.asfreq('B', method='backfill')
 
-result = plot_trend(price, 'avg_per_kg', selected_commodity)
+result = plot_forecast(price, 'avg_per_kg', selected_commodity, 30)
 
 st.plotly_chart(result)
