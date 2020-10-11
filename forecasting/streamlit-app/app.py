@@ -4,6 +4,7 @@ import numpy as np
 
 # App libraries 
 import streamlit as st
+import datetime
 
 # import sql DATABASE
 from database.sql_tables import database
@@ -37,10 +38,18 @@ selected_grade = st.sidebar.selectbox(
     options=grade
 )
 
+# INSERT CALENDAR
+today = datetime.date.today()
+future_date = today + datetime.timedelta(days=1)
+forecast_date = st.sidebar.date_input('Forecast date', future_date)
+
+if forecast_date <= today:
+    st.sidebar.error('Error: Forecast date must fall after today\'s date.')
+
 df = database[
     (database['Commodities'] == selected_commodity) & \
     (database['Weight_Kg'] == selected_weight) & \
-    (database['Size_Grdae'] == selected_grade)
+    (database['Size_Grade'] == selected_grade)
 ][['Date', 'avg_per_kg']]
 
 price = df.groupby('Date')['avg_per_kg'].mean()

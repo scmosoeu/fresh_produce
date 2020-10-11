@@ -18,7 +18,7 @@ def plot_trend(data, col, product):
     data: DataFrame
         A dataframe containing a series of which a trend is to be determined
     col: str
-        A column name from which the trebd is to be determined
+        A column name from which the trend is to be determined
     product: str
         A column name of series from which a trend is to be determined
 
