@@ -1,5 +1,6 @@
 from pmdarima import auto_arima
 
+
 def arima_forecast(df, col, num_of_periods):
     """
     Returns a trained ARIMA model
