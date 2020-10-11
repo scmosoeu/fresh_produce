@@ -1,7 +1,7 @@
 from pmdarima import auto_arima
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
 
-
-def arima_forecast(df, col, num_of_periods):
+def arima_forecast(df, col, num_of_periods, method):
     """
     Returns a trained ARIMA model
 
@@ -14,6 +14,8 @@ def arima_forecast(df, col, num_of_periods):
         A column name from which an ARIMA model will be developed
     num_of_periods: int
         Number of periods ahead that the model will predict
+    method: str
+        A forecasting method used in generating predictions
 
     Returns
     --------
@@ -25,3 +27,7 @@ def arima_forecast(df, col, num_of_periods):
     pred = model.predict(n_periods=num_of_periods)
 
     return pred  
+
+
+def holt_winters(df, col, num_of_periods):
+
