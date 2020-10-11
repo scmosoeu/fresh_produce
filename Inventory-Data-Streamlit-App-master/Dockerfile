@@ -8,4 +8,4 @@ RUN cp config.toml ~/.streamlit/config.toml
 RUN cp credentials.toml ~/.streamlit/credentials.toml
 WORKDIR /app
 ENTRYPOINT ["streamlit", "run"]
-CMD ["inventory_planning_app.py"]
+CMD ["Inventory Planner Demo.py"]

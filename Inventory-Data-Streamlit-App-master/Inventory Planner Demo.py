@@ -13,6 +13,7 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 import seaborn as sns
+sns.set()
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
@@ -20,24 +21,9 @@ from sklearn.cluster import KMeans
 import pandas as pd
 from pulp import *
 import math
-import pprint
-#import plotly.express as px
-#import plotly.graph_objects as go
-#from plotly.subplots import make_subplots
-#import matplotlib.pyplot as plt
-# Set plot style for data visualisation
-sns.set()
-#from PIL import Image
+import base64
+from PIL import Image
 
-
-# Vectorizer
-
-
-#creating dict keys for predictions
-
-
-# Load your raw data
-#raw = pd.read_...
 
 # The main function where we will build the actual app
 def main():
@@ -45,39 +31,61 @@ def main():
 
     # Creates a main title and subheader on your page -
     # these are static across all pages
-    st.title("Fresh Produce Inventory Planner")
-
-    # Using PIL
+    #st.title("Fresh Produce Inventory Planner")
 
     # Creating sidebar with selection box -
     # you can create multiple pages this way
-    options = ["Trends"]
+    options = ["Trends", "Inventory Planning"]
     selection = st.sidebar.selectbox("Choose Option", options)
 
     # Building out the "Information" page
 
     if selection == "Trends":
-        #image = Image.open('img5.png')
-        #st.image(image, caption=None, use_column_width=True)
         #st.info("General Information")
         # You can read a markdown file from supporting resources folder
-        st.subheader("Dashboard")
-        st.subheader("==========================================================")
-        st.subheader("Dashboard Trends")
-        st.subheader("==========================================================")
+        #st.subheader("Dashboard")
+        #st.subheader("==========================================================")
+        #st.subheader("Dashboard Trends")
+        #st.subheader("==========================================================")
+        @st.cache(allow_output_mutation=True)
+        def get_base64_of_bin_file(bin_file):
+            with open(bin_file, 'rb') as f:
+                data = f.read()
+            return base64.b64encode(data).decode()
 
+        def set_png_as_page_bg(png_file):
+            bin_str = get_base64_of_bin_file(png_file)
+            page_bg_img = '''
+            <style>
+            body {
+            background-image: url("data:image/png;base64,%s");
+            background-size: cover;
+            }
+            </style>
+            ''' % bin_str
+
+            st.markdown(page_bg_img, unsafe_allow_html=True)
+            return
+
+        #set_png_as_page_bg('Inventory Planning.png')
         st.markdown("""
-        <iframe width="800" height="486" src="https://app.powerbi.com/view?r=eyJrIjoiNzdlNjk3MWItZGVkOC00YzMyLTk1ODEtMGQzYzkxZjk0NDQ5IiwidCI6IjhhZGM0MGUwLWRhMTYtNDBiNC1iZDdjLWJmZDk1ODcxOTQ4NyJ9&pageName=ReportSection" frameborder="0" allowFullScreen="true"></iframe>
+        <iframe width="1190" height="800" src="https://app.powerbi.com/view?r=eyJrIjoiNzdlNjk3MWItZGVkOC00YzMyLTk1ODEtMGQzYzkxZjk0NDQ5IiwidCI6IjhhZGM0MGUwLWRhMTYtNDBiNC1iZDdjLWJmZDk1ODcxOTQ4NyJ9&pageName=ReportSection" frameborder="0" allowFullScreen="true"></iframe>
         """, unsafe_allow_html=True)
 
-        st.markdown("""
-        <iframe width="800" height="486" src="https://app.powerbi.com/view?r=eyJrIjoiNDdlZjY1NjYtYTc3MC00YjllLWFhZGMtYWZkZDAzNWZmZTRjIiwidCI6IjhhZGM0MGUwLWRhMTYtNDBiNC1iZDdjLWJmZDk1ODcxOTQ4NyJ9" frameborder="0" allowFullScreen="true"></iframe>
-        """, unsafe_allow_html=True)
+        #st.markdown("""
+        #<iframe width="800" height="486" src="https://app.powerbi.com/view?r=eyJrIjoiNDdlZjY1NjYtYTc3MC00YjllLWFhZGMtYWZkZDAzNWZmZTRjIiwidCI6IjhhZGM0MGUwLWRhMTYtNDBiNC1iZDdjLWJmZDk1ODcxOTQ4NyJ9" frameborder="0" allowFullScreen="true"></iframe>
+        #""", unsafe_allow_html=True)
+
+    if selection == "Inventory Planning":
+        image = Image.open('Inventory Smaller header.png')
+        st.image(image, caption=None, use_column_width=True)
 
 
-        st.subheader("==========================================================")
-        st.subheader("Weekly Inventory Planning")
-        st.subheader("==========================================================")
+        #st.subheader("==========================================================")
+        #st.subheader("Inventory Planning")
+        #st.subheader("==========================================================")
+
+
         #"""### 2) GENERATE DATA"""
 
         np.random.seed(123)
@@ -103,10 +111,10 @@ def main():
             return x, y
 
             # generate toy data
-        demand=st.slider("What level of demand do you expect to have next week?",0.25,0.85,0.25)
-        st.write ("Low demand: 0.01-0.25")
-        st.write ("Medium demand: 0.25-0.75")
-        st.write ("High demand: 0.75-1.00")
+        demand=st.slider("What level of demand do you expect to have next week?",1.00,100.00,25.00, format="%f percent")/100
+        st.markdown ("Expecting low demand: 1%-25% of customers compared to previous week")
+        st.write ("Expecting medium demand: 25%-75% of customers compared to previous week")
+        st.write ("Expecting high demand: 75%-100% of customers compared to previous week")
         ##high_demand=0.75
         x, y = generate_toy_data(1000, 100, demand,2)
 
@@ -242,10 +250,10 @@ def main():
         #"""#### b) USING PULP TO SOLVE STOCHASTIC PROGRAMMING"""
 
 
-        N = st.number_input("How many stock items are you able to purchase this week?",10)         # maximum item to purchase
+        N = st.number_input("How many stock items are you able to purchase next week?",10)         # maximum item to purchase
         #st.slider(N, 0, 100)
-        cost_price = st.number_input("Forecasted cost price to be paid to the to be supplier for each stock item for this specific product selection, size, and class?",1) # amount paid to the supplier
-        sell_price = st.number_input("Forecasted customer retail selling price for stock item?",1) # amount paid by the customer
+        cost_price = st.number_input("Forecasted cost price to be paid to the to be supplier for each stock item for this specific product selection, size, and class?",1.00) # amount paid to the supplier
+        sell_price = st.number_input("Forecasted customer retail selling price for stock item?",1.00) # amount paid by the customer
         waste_price = 0 # amount paid if we sell the remaining goods (ie. when we have more stock as prediction > demand)
 
         ##########################################
@@ -340,7 +348,7 @@ def main():
         # we can see how higher execution causes greater loss during weak demand and hence,
         # higher execution number has difficulty in bouncing the profit up
 
-        fig1, ax = plt.subplots(1)
+        fig1, ax = plt.subplots()
 
         for i in temp['item_to_purchase'].unique():
             temp[temp['item_to_purchase'] == i].plot.line(x='item_to_purchase', y='total_weighted_profit', ax=ax, label=str(i))
@@ -349,6 +357,7 @@ def main():
 
         # check the total expected profit, which comes from all possible profit
         # and weighted by the probability of the scenario to happen
+        #fig = plt.figure(figsize=(4,3))
         fig, ax = plt.subplots()
         plt.scatter(x='item_to_purchase', y='total_weighted_profit', data=example_df_summ)
         ax.set_xlabel('Optimal stock count for item')
