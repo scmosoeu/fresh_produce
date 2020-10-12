@@ -23,7 +23,8 @@ from pulp import *
 import math
 import base64
 from PIL import Image
-
+#import asyncio
+#from httpx_oauth.clients.google import GoogleOAuth2
 
 # The main function where we will build the actual app
 def main():
@@ -35,6 +36,9 @@ def main():
 
     # Creating sidebar with selection box -
     # you can create multiple pages this way
+
+
+    st.beta_set_page_config(layout="wide")
     options = ["Trends", "Inventory Planning"]
     selection = st.sidebar.selectbox("Choose Option", options)
 
@@ -69,7 +73,7 @@ def main():
 
         #set_png_as_page_bg('Inventory Planning.png')
         st.markdown("""
-        <iframe width="1190" height="800" src="https://app.powerbi.com/view?r=eyJrIjoiNzdlNjk3MWItZGVkOC00YzMyLTk1ODEtMGQzYzkxZjk0NDQ5IiwidCI6IjhhZGM0MGUwLWRhMTYtNDBiNC1iZDdjLWJmZDk1ODcxOTQ4NyJ9&pageName=ReportSection" frameborder="0" allowFullScreen="true"></iframe>
+        <iframe width="1190" height="800" src="https://app.powerbi.com/view?r=eyJrIjoiMjZlMjNhYTgtYjNiMy00YjY5LTk4NzktNDYxYTlhNzhlZmYwIiwidCI6IjhhZGM0MGUwLWRhMTYtNDBiNC1iZDdjLWJmZDk1ODcxOTQ4NyJ9" frameborder="0" allowFullScreen="true"></iframe>
         """, unsafe_allow_html=True)
 
         #st.markdown("""
