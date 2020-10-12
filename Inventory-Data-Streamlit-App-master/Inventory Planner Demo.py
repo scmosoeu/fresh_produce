@@ -254,10 +254,11 @@ def main():
         #"""#### b) USING PULP TO SOLVE STOCHASTIC PROGRAMMING"""
 
 
-        N = st.number_input("How many stock items are you able to purchase next week?",10)         # maximum item to purchase
+        #N = st.number_input("How many stock items are you able to purchase next week?",10)         # maximum item to purchase
+        N=100
         #st.slider(N, 0, 100)
-        cost_price = st.number_input("Forecasted cost price to be paid to the to be supplier for each stock item for this specific product selection, size, and class?",1.00) # amount paid to the supplier
-        sell_price = st.number_input("Forecasted customer retail selling price for stock item?",1.00) # amount paid by the customer
+        cost_price = st.number_input("Forecasted cost price for stock item?",1.00) # amount paid to the supplier
+        sell_price = st.number_input("Forecasted retail selling price for stock item?",1.00) # amount paid by the customer
         waste_price = 0 # amount paid if we sell the remaining goods (ie. when we have more stock as prediction > demand)
 
         ##########################################
