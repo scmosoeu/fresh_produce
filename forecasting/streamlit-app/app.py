@@ -14,7 +14,9 @@ from visuals.forecasts import plot_forecast
 
 ############################### STREAMLIT APP #########################################################
 
-commodity = database['Commodities'].unique()
+#st.beta_set_page_config(layout='wide')
+
+commodity = sorted(database['Commodities'].unique(), reverse=False)
 
 selected_commodity = st.sidebar.selectbox(
     label="Commodity",
@@ -61,5 +63,8 @@ if forecast_date <= today:
 elif forecast_date > pred.index[-1]:
     st.sidebar.error('Error: Forecast date not in forecast horizon')
 else:
-    st.sidebar.success(f'Projected cost is R {pred[str(forecast_date)]:.2f} /Kg')
+    st.sidebar.success(f'''
+        Projected cost is R {pred[str(forecast_date)]:.2f} /Kg \n
+        Per container: R {pred[str(forecast_date)] * selected_weight:.2f} 
+    ''')
 st.plotly_chart(result)
