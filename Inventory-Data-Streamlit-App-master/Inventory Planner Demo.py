@@ -38,7 +38,7 @@ def main():
     # you can create multiple pages this way
 
 
-    st.beta_set_page_config(layout="wide")
+    st.beta_set_page_config(layout="wide", page_icon="pear")
     options = ["Trends", "Inventory Planning"]
     selection = st.sidebar.selectbox("Choose Option", options)
 
