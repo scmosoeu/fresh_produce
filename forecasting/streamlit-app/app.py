@@ -41,10 +41,8 @@ selected_grade = st.sidebar.selectbox(
 # INSERT CALENDAR
 today = datetime.date.today()
 future_date = today + datetime.timedelta(days=1)
+st.sidebar.markdown(f"""Today's date: **{today}**""")
 forecast_date = st.sidebar.date_input('Forecast date', future_date)
-
-if forecast_date <= today:
-    st.sidebar.error('Error: Forecast date must fall after today\'s date.')
 
 df = database[
     (database['Commodities'] == selected_commodity) & \
@@ -56,6 +54,12 @@ price = df.groupby('Date')['avg_per_kg'].mean()
 price = pd.DataFrame(price)
 price = price.asfreq('B', method='backfill')
 
-result = plot_forecast(price, 'avg_per_kg', selected_commodity, 30)
+result, pred = plot_forecast(price, 'avg_per_kg', selected_commodity, 60)
 
+if forecast_date <= today:
+    st.sidebar.error("Error: Forecast date must fall after today's date.")
+elif forecast_date > pred.index[-1]:
+    st.sidebar.error('Error: Forecast date not in forecast horizon')
+else:
+    st.sidebar.success(f'Projected cost is R {pred[str(forecast_date)]:.2f} /Kg')
 st.plotly_chart(result)

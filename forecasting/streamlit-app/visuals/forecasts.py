@@ -35,6 +35,8 @@ def plot_forecast(data, col, product, periods):
     start = data.index[-1] + datetime.timedelta(days=1) # Prediction start date
     prediction_index = pd.date_range(start, periods=periods, freq='B')
 
+    forecasts = pd.Series(predictions, index=prediction_index)
+
     fig = go.Figure(
         data=[
             go.Scatter(
@@ -65,6 +67,6 @@ def plot_forecast(data, col, product, periods):
             template='none'
         )
     )
-    return fig
+    return fig, forecasts
 
 
