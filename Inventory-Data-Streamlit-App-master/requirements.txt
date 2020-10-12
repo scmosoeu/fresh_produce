@@ -7,3 +7,6 @@ pandas
 Pillow
 pulp
 psycopg2-binary
+plotly
+pmdarima
+statsmodel

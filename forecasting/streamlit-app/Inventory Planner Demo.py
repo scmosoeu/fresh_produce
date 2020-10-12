@@ -6,7 +6,7 @@
 """
 # Streamlit dependencies
 import streamlit as st
-st.beta_set_page_config(layout="wide")
+st.beta_set_page_config(layout="wide", page_icon="pear")
 #import joblib,os
 
 # Data dependencies

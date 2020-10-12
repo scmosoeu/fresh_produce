@@ -6,6 +6,7 @@
 """
 # Streamlit dependencies
 import streamlit as st
+st.beta_set_page_config(layout="wide", page_icon="pear")
 #import joblib,os
 
 # Data dependencies
@@ -23,8 +24,14 @@ from pulp import *
 import math
 import base64
 from PIL import Image
+import plotly.graph_objects as go
 #import asyncio
 #from httpx_oauth.clients.google import GoogleOAuth2
+import datetime
+# import sql DATABASE
+from database.sql_tables import database
+# Custom libraries
+from visuals.forecasts import plot_forecast
 
 # The main function where we will build the actual app
 def main():
@@ -38,7 +45,7 @@ def main():
     # you can create multiple pages this way
 
 
-    st.beta_set_page_config(layout="wide")
+    #st.beta_set_page_config(layout="wide")
     options = ["Trends", "Inventory Planning"]
     selection = st.sidebar.selectbox("Choose Option", options)
 
@@ -91,6 +98,63 @@ def main():
 
 
         #"""### 2) GENERATE DATA"""
+
+
+############################### STREAMLIT APP #########################################################
+
+
+        commodity = sorted(database['Commodities'].unique(), reverse=False)
+
+        selected_commodity = st.sidebar.selectbox(
+            label="Commodity",
+            options=commodity
+        )
+
+        weight = database[database['Commodities'] == selected_commodity]['Weight_Kg'].unique()
+
+        selected_weight = st.sidebar.selectbox(
+            label="Weight",
+            options=weight
+        )
+
+        grade = database[
+            (database['Commodities'] == selected_commodity) & \
+            (database['Weight_Kg'] == selected_weight)
+        ]['Size_Grade'].unique()
+
+        selected_grade = st.sidebar.selectbox(
+            label="Size Grade",
+            options=grade
+        )
+
+        # INSERT CALENDAR
+        today = datetime.date.today()
+        future_date = today + datetime.timedelta(days=1)
+        st.sidebar.markdown(f"""Today's date: **{today}**""")
+        forecast_date = st.sidebar.date_input('Forecast date', future_date)
+
+        df = database[
+            (database['Commodities'] == selected_commodity) & \
+            (database['Weight_Kg'] == selected_weight) & \
+            (database['Size_Grade'] == selected_grade)
+        ][['Date', 'avg_per_kg']]
+
+        price = df.groupby('Date')['avg_per_kg'].mean()
+        price = pd.DataFrame(price)
+        price = price.asfreq('B', method='backfill')
+
+        result, pred = plot_forecast(price, 'avg_per_kg', selected_commodity, 60)
+
+        if forecast_date <= today:
+            st.sidebar.error("Error: Forecast date must fall after today's date.")
+        elif forecast_date > pred.index[-1]:
+            st.sidebar.error('Error: Forecast date not in forecast horizon')
+        else:
+            st.sidebar.success(f'''
+                Projected cost is R {pred[str(forecast_date)]:.2f} /Kg \n
+                Per container: R {pred[str(forecast_date)] * selected_weight:.2f} 
+            ''')
+        st.plotly_chart(result)
 
         np.random.seed(123)
 
@@ -257,8 +321,10 @@ def main():
         #N = st.number_input("How many stock items are you able to purchase next week?",10)         # maximum item to purchase
         N=100
         #st.slider(N, 0, 100)
-        cost_price = st.number_input("Forecasted cost price for stock item?",1.00) # amount paid to the supplier
-        sell_price = st.number_input("Forecasted retail selling price for stock item?",1.00) # amount paid by the customer
+        cost_price = st.number_input(f"Forecasted cost price for {selected_commodity} in R/Kg", pred[str(forecast_date)]) # amount paid to the supplier
+        margin = st.slider("Gross Profit Margin",0.00,100.00,25.00, format="%f percent")/100
+        profit = pred[str(forecast_date)] * (1 + margin)
+        sell_price = st.number_input(f"Forecasted retail selling price for {selected_commodity} in R/Kg?",profit) # amount paid by the customer
         waste_price = 0 # amount paid if we sell the remaining goods (ie. when we have more stock as prediction > demand)
 
         ##########################################
@@ -353,23 +419,45 @@ def main():
         # we can see how higher execution causes greater loss during weak demand and hence,
         # higher execution number has difficulty in bouncing the profit up
 
-        fig1, ax = plt.subplots()
+        # fig1, ax = plt.subplots()
 
-        for i in temp['item_to_purchase'].unique():
-            temp[temp['item_to_purchase'] == i].plot.line(x='item_to_purchase', y='total_weighted_profit', ax=ax, label=str(i))
-        plt.xticks(range(0,np.unique(temp['item_to_sell']).shape[0]),np.unique(temp['item_to_sell']),rotation=45)
-        plt.show()
+        # for i in temp['item_to_purchase'].unique():
+        #     temp[temp['item_to_purchase'] == i].plot.line(x='item_to_purchase', y='total_weighted_profit', ax=ax, label=str(i))
+        # plt.xticks(range(0,np.unique(temp['item_to_sell']).shape[0]),np.unique(temp['item_to_sell']),rotation=45)
+        # plt.show()
 
         # check the total expected profit, which comes from all possible profit
         # and weighted by the probability of the scenario to happen
         #fig = plt.figure(figsize=(4,3))
-        fig, ax = plt.subplots()
-        plt.scatter(x='item_to_purchase', y='total_weighted_profit', data=example_df_summ)
-        ax.set_xlabel('Optimal stock count for item')
-        ax.set_ylabel('Profit range for item (Rands)')
-        ax.set_title('Inventory profit scenarios visualisation')
-        plt.show()
-        st.pyplot(fig)
+
+        # fig, ax = plt.subplots()
+        # plt.scatter(x='item_to_purchase', y='total_weighted_profit', data=example_df_summ)
+        # ax.set_xlabel('Optimal stock count for item')
+        # ax.set_ylabel('Profit range for item (Rands)')
+        # ax.set_title('Inventory profit scenarios visualisation')
+        # plt.show()
+        # st.pyplot(fig)
+
+        fig = go.Figure(
+            data=[
+                go.Scatter(
+                    x=example_df_summ['item_to_purchase'],
+                    y=example_df_summ['total_weighted_profit'],
+                    mode='markers',
+                    marker=dict(size=10)
+                )
+            ],
+            layout=go.Layout(
+                title='Inventory profit scenarios visualisation',
+                title_x=0.5,
+                xaxis={'title': f'Optimal stock count for {selected_commodity}'},
+                yaxis={'title': f'Profit range for {selected_commodity} (Rands)'},
+                template='none'
+            )
+        )
+
+        st.plotly_chart(fig)
+
 
         #"""### 5) PREDICTION + STOCHASTIC PROGRAMMING
         #### a) BOOTSTRAPPING
