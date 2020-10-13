@@ -1,11 +1,12 @@
 # General libraries
 import pandas as pd
 import numpy as np
-import streamlit as st 
+import streamlit as st
 
 # SQLAlchemy imports
 import urllib
 from sqlalchemy import create_engine, insert, Table, MetaData, select
+#import pyodbc
 
 # Custom upload with connection string
 from database.engine_info import server_info
@@ -40,7 +41,7 @@ def data_preparation(data_frame):
     """
 
     # Convert some of the columns to their appropriate data type
-    float_columns = ['Weight_Kg', 'Low_Price', 'High_Price', 'Average_Price', 
+    float_columns = ['Weight_Kg', 'Low_Price', 'High_Price', 'Average_Price',
                     'Sales_Total', 'Total_Kg_Sold', 'Total_Qty_Sold', 'Stock_On_Hand']
 
     # Convert the columns to numeric
