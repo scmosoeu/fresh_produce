@@ -1,13 +1,164 @@
-streamlit
-numpy
-matplotlib
-sklearn
-seaborn
-pandas
-Pillow
-pulp
-psycopg2-binary
-plotly
-pmdarima
-statsmodels
-sqlalchemy
+aiodns==2.0.0
+aiofiles==0.5.0
+aiohttp==3.6.2
+aiohttp-socks==0.5.5
+aiohttp-xmlrpc==1.3.0
+altair==4.1.0
+amply @ file:///home/conda/feedstock_root/build_artifacts/amply_1601814141062/work
+argon2-cffi==20.1.0
+astor==0.8.1
+async-generator==1.10
+async-timeout==3.0.1
+attrs==20.2.0
+backcall==0.2.0
+backoff==1.10.0
+bandersnatch==4.3.0
+base58==2.0.1
+bleach==3.2.1
+blinker==1.4
+bokeh==2.2.1
+boto3==1.15.7
+botocore==1.18.7
+cachetools==4.1.1
+certifi==2020.6.20
+cffi==1.14.3
+chardet==3.0.4
+click==7.1.2
+colorama==0.4.3
+cycler==0.10.0
+Cython==0.29.17
+decorator==4.4.2
+defusedxml==0.6.0
+diff-match-patch==20200713
+Django==2.2.16
+django-cleanup==5.1.0
+django-currentuser==0.5.1
+django-filter==2.3.0
+django-guardian==2.3.0
+django-import-export==2.3.0
+django-lifecycle==0.7.7
+djangorestframework==3.11.2
+djangorestframework-queryfields==1.0.0
+docutils @ file:///D:/bld/docutils_1602438419785/work
+drf-access-policy==0.7.0
+drf-nested-routers==0.91
+drf-spectacular==0.9.13
+dynaconf==3.1.2
+entrypoints==0.3
+enum-compat==0.0.3
+et-xmlfile==1.0.1
+filelock==3.0.12
+Flask==1.1.2
+Flask-SQLAlchemy==2.4.4
+gunicorn==20.0.4
+idna==2.10
+inflection==0.5.1
+ipykernel @ file:///C:/ci/ipykernel_1596190155316/work/dist/ipykernel-5.3.4-py3-none-any.whl
+ipython @ file:///C:/ci/ipython_1598865816163/work
+ipython-genutils==0.2.0
+ipywidgets==7.5.1
+itsdangerous==1.1.0
+jdcal==1.4.1
+jedi @ file:///C:/ci/jedi_1598353661586/work
+Jinja2==2.11.2
+jmespath==0.10.0
+joblib==0.16.0
+jsonschema==3.2.0
+jupyter-client @ file:///tmp/build/80754af9/jupyter_client_1601311786391/work
+jupyter-core==4.6.3
+jupyterlab-pygments==0.1.1
+kiwisolver==1.2.0
+lxml==4.5.2
+MarkupPy==1.14
+MarkupSafe==1.1.1
+matplotlib @ file:///C:/ci/matplotlib-base_1603355780617/work
+mistune==0.8.4
+mkl-fft==1.2.0
+mkl-random==1.1.1
+mkl-service==2.3.0
+multidict==4.7.6
+nbclient==0.5.0
+nbconvert==6.0.6
+nbformat==5.0.7
+nest-asyncio==1.4.1
+notebook==6.1.4
+numpy @ file:///C:/ci/numpy_and_numpy_base_1603466732592/work
+odfpy==1.4.1
+olefile==0.46
+openpyxl==3.0.5
+packaging==20.4
+pandas @ file:///C:/ci/pandas_1602083338010/work
+pandocfilters==1.4.2
+parso==0.7.1
+pathtools==0.1.2
+patsy==0.5.1
+pickleshare==0.7.5
+Pillow @ file:///C:/ci/pillow_1602770972588/work
+pkginfo==1.5.0.1
+plotly==4.10.0
+pmdarima==1.7.1
+prometheus-client==0.8.0
+prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1602688806899/work
+protobuf==3.13.0
+psycopg2==2.8.6
+PuLP @ file:///D:/bld/pulp_1600089948353/work
+pulp-python==3.0.0b11
+pulpcore==3.7.1
+pyarrow==1.0.1
+pycares==3.1.1
+pycparser==2.20
+pydeck==0.5.0b1
+Pygments @ file:///tmp/build/80754af9/pygments_1600458456400/work
+pygtrie==2.3.3
+pymssql==2.1.4
+pyodbc===4.0.0-unsupported
+pyparsing==2.4.7
+pyrsistent==0.17.3
+python-dateutil==2.8.1
+python-gnupg==0.4.6
+python-socks==1.1.0
+pytz==2020.1
+pywin32==228
+pywinpty==0.5.7
+PyYAML==5.3.1
+pyzmq==19.0.2
+redis==3.5.3
+requests==2.24.0
+requirements-parser==0.2.0
+retrying==1.3.3
+rq==1.5.2
+s3transfer==0.3.3
+scikit-learn==0.23.2
+scipy==1.5.2
+seaborn @ file:///tmp/build/80754af9/seaborn_1600553570093/work
+Send2Trash==1.5.0
+sip==4.19.13
+six==1.15.0
+SQLAlchemy==1.3.19
+sqlparse==0.4.1
+statsmodels==0.11.1
+streamlit==0.68.0
+tablib==2.0.0
+terminado==0.9.1
+testpath==0.4.4
+threadpoolctl==2.1.0
+toml==0.10.1
+toolz==0.11.1
+tornado==6.0.4
+traitlets @ file:///tmp/build/80754af9/traitlets_1600712679583/work
+typing-extensions==3.7.4.3
+tzlocal==2.1
+uritemplate==3.0.1
+urllib3==1.25.10
+urlman==1.3.0
+validators==0.18.1
+watchdog==0.10.3
+wcwidth @ file:///tmp/build/80754af9/wcwidth_1593447189090/work
+webencodings==0.5.1
+Werkzeug==1.0.1
+whitenoise==5.2.0
+widgetsnbextension==3.5.1
+wincertstore==0.2
+xlrd==1.2.0
+xlwt==1.3.0
+yarl==1.6.0
