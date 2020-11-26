@@ -15,7 +15,7 @@ The section dives into the analytical framework that was carried through in orde
 
 ######
 
-- **Pipeline:** The initial phase of the pipe
+- **Pipeline:** The initial phase of the pipeline involved *Web scrapping*, whereby raw data was extracted from the respective websites using Selenium. The information relayed by the Market data included but not limited to Total Sales, Total Quantity Sold, Average Price Per Kilogram, and Total Quantity Remaining. These information was extracted as is online and stored in a database under the *Raw database*. 
 
 ######
 
