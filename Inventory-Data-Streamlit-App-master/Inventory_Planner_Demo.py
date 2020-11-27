@@ -452,10 +452,10 @@ def main():
                 )
             ],
             layout=go.Layout(
-                title='Inventory profit scenarios visualisation',
+                title=f'Inventory profit scenarios visualisation for {selected_commodity}',
                 title_x=0.5,
-                xaxis={'title': f'Optimal stock count for {selected_commodity}'},
-                yaxis={'title': f'Profit range for {selected_commodity} (Rands)'},
+                xaxis={'title': 'Optimal stock count'},
+                yaxis={'title': 'Profit range (Rands)'},
                 template='none'
             )
         )
