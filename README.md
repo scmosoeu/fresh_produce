@@ -31,6 +31,6 @@ The section dives into the analytical framework that was carried through in orde
 ## 3. Freshgram web application
 The web application has two options, below is the snap shot of the **trend** option which makes use of PowerBI dashboards for visualizations.
 
-![trend](imgs/view_1.png)
+![trend](imgs/view_one.png)
 
 The information relayed on the dashboards include, based on the product of interest over a specified period, the change in average pricing as well as pricing range, quantity sold, and quantity remaining in inventory. 
