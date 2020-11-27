@@ -1,17 +1,17 @@
 # Inventory Management
 
-## 1. Introduction
+## 1. Introduction - A Freshgram analytical approach
 
 ![fresh_produce](imgs/fresh_produce.jpg)
 
 This project focuses on inventory management for fresh produce products.
 
 ## 2. Analytical Framework
-The section dives into the analytical framework that was carried through in order to generate the final product. The figure below displays an overview of every component of the framework and how they are inter-connected.
+The section dives into the analytical framework that was carried through in order to generate the Freshgram web application. The figure below displays an overview of every component of the framework and how they are inter-connected.
 ![analytical_framework](imgs/analytical_framework.png)
 
 ### Solutions Approach
-- **Data:** The data is acquired from the respective markets of the region and the retailer. The Market and Retail data is updated on a daily and weekly basis respectively.
+- **Data:** The data is acquired from the respective website for the market of the region and the retailer. The Market and Retail data is updated on a daily and weekly basis respectively.
 
 ######
 
@@ -19,8 +19,8 @@ The section dives into the analytical framework that was carried through in orde
 
 ######
 
-- **Modelling:**
+- **Modelling:** Various models were created for predicting average prices per kilograms for fresh produce products using *Time Series*, *Regression*, and *Deep Learning* models.  
 
 ######
 
-- **Deploy:**
+- **Deploy:** A PowerBI dashboard is used for visualizations, these dashboards are embedded onto a Streamlit web application, generating forecasts and inventory optimization analysis.
