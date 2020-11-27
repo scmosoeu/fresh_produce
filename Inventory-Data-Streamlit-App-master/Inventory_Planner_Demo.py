@@ -467,10 +467,10 @@ def main():
 
             st.plotly_chart(fig)
 
-            max_profit = max(example_df_summ['total_weighted_profit'])
-            max_profit_index = example_df_summ[example_df_summ['total_weighted_profit'] == max_profit].index
+            # max_profit = max(example_df_summ['total_weighted_profit'])
+            # max_profit_index = example_df_summ[example_df_summ['total_weighted_profit'] == max_profit].values()['item_to_purchase']
 
-            st.write(f"Max profit items = {example_df_summ.loc[max_profit_index]}")
+            # st.write(f"{max_profit_index}")
 
             #"""### 5) PREDICTION + STOCHASTIC PROGRAMMING
             #### a) BOOTSTRAPPING
