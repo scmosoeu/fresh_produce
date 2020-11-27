@@ -2,12 +2,15 @@
 
 ## 1. Introduction - A Freshgram analytical approach
 
-![fresh_produce](imgs/fresh_produce.jpg)
+<p align="center">
+<img width="80%" height="50%" src="imgs/fresh_produce.jpg">
+</p>
 
 This project focuses on inventory management for fresh produce products.
 
 ## 2. Analytical Framework
 The section dives into the analytical framework that was carried through in order to generate the Freshgram web application. The figure below displays an overview of every component of the framework and how they are inter-connected.
+
 ![analytical_framework](imgs/analytical_framework.png)
 
 ### Solutions Approach
