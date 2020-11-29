@@ -12,7 +12,7 @@ from models.arima_model import arima_forecast
 
 def plot_forecast(data, col, product, periods):
     """
-    Returns ....
+    Returns a plotly graph object
 
     Parameters
     -----------
