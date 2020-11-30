@@ -2,13 +2,13 @@
 
 ## 1. Introduction - A Freshgram analytical approach
 
-Inventory management is one of the central problems in retail. Frequently inventory managers need to decide how many items of each product they need to order from suppliers. A manual ordering of products cannot scale to thousands of products and cannot take into account changing demands and many business constraints and costs. Existing inventory optimization systems are not scalable enough to meet the requirements of large retailers. Also, these systems are not flexible enough and cannot incorporate important business goals and constraints.
+Inventory management of perishable goods is a challenge in the retail space, hence having a good inventory management system is vital in managing your resources. With many products currently in the market and demand for these products not constant, retailers end up losing profits due to sales not made or under stocking. 
 
 <p align="center">
 <img width="80%" height="50%" src="imgs/fresh_produce.jpeg">
 </p>
 
-Data scientists and developers will tailor this solution to business goals and constraints of big retailers and will build custom large-scale inventory optimization systems on top of it. These systems will speed up the ordering process and will improve widely used inventory management business metrics (e.g. normalized revenue per day and inventory turnover).
+The Freshgram web application will assist retailers in identifying the pricing they need to attach to their products. The application will also assist in predicting the actual stock count for the retailer to be profitable while minimizing food waste.
 
 The web application can be viewed online [here](https://freshgram.herokuapp.com/).
 For more details on how to use the web application, see the [user guide](https://docs.google.com/document/d/1bILCLo3VmPTb4jP-B6_Id3VyXQm_iAA__FfAQlDlIis/edit#heading=h.gjdgxs).
