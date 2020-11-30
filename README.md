@@ -3,7 +3,7 @@
 ## 1. Introduction - A Freshgram analytical approach
 
 <p align="center">
-<img width="80%" height="50%" src="imgs/fresh_produce.jpg">
+<img width="80%" height="50%" src="imgs/fresh_produce.jpeg">
 </p>
 
 This project focuses on inventory management for fresh produce products.
