@@ -33,13 +33,15 @@ The section dives into the analytical framework that was carried through in orde
 - **Deploy:** A PowerBI dashboard is used for visualizations, these dashboards are embedded onto a Streamlit web application, generating forecasts and inventory optimization analysis.
 
 ## 3. Freshgram web application
-The web application has two options, below is the snap shot of the **trend** option which makes use of PowerBI dashboards for visualizations.
+The web application has two options, below is the snap shot of the **trend** option which makes use of PowerBI dashboards for visualizations. The information relayed on the dashboards include, based on the product of interest over a specified period, the change in average pricing as well as pricing range, quantity sold, and quantity remaining in inventory.
 
 ![trend](imgs/view_one.png)
 
-The information relayed on the dashboards include, based on the product of interest over a specified period, the change in average pricing as well as pricing range, quantity sold, and quantity remaining in inventory.
+The **inventory planning** option of the web application makes use of predictions of fresh produce products. Here the user can select the a particular day of interest in the future date and forecasted costs of the product will be returned as per kilogram and per container cost.
 
 ![inventory_planning_one](imgs/view_two.png)
+
+The inventory optimization section makes use of Linear programming to maximize profit for the retailer. This is based on projected demand of the product, the gross profit margin the retailer hopes to achieve and as a result the quantity of the products the retailer needs to purchase in order to meet the target gross profit margin. 
 
 ![inventory_planning_two](imgs/view_three.png)
 
