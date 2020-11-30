@@ -42,7 +42,7 @@ This section is a step-by-step guide on how to launch the Freshgram web applicat
 ```
 git clone https://github.com/scmosoeu/fresh_produce.git
 ```
-On your terminal you access the repo
+Access the repo on your Anaconda terminal
 ```
 cd fresh_produce
 ```
