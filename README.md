@@ -40,11 +40,11 @@ The information relayed on the dashboards include, based on the product of inter
 ## 4. Getting Started
 This section is a step-by-step guide on how to launch the Freshgram web application on your local machine. This assumes an Anaconda environment is already installed on your local machine.
 ```
-git clone the repo
+git clone https://github.com/scmosoeu/fresh_produce.git
 ```
 On your terminal you access the repo
 ```
-cd repo
+cd fresh_produce
 ```
 Once inside the repo, run the following command on your terminal to install the virtual environment as well as the supporting packages.
 ```
