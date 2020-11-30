@@ -33,4 +33,33 @@ The web application has two options, below is the snap shot of the **trend** opt
 
 ![trend](imgs/view_one.png)
 
-The information relayed on the dashboards include, based on the product of interest over a specified period, the change in average pricing as well as pricing range, quantity sold, and quantity remaining in inventory. 
+The information relayed on the dashboards include, based on the product of interest over a specified period, the change in average pricing as well as pricing range, quantity sold, and quantity remaining in inventory.
+
+# NEED TO ADD INVETORY PLANNING SNAP SHOT
+
+## 4. Getting Started
+This section is a step-by-step guide on how to launch the Freshgram web application on your local machine. This assumes an Anaconda environment is already installed on your local machine.
+```
+git clone the repo
+```
+On your terminal you access the repo
+```
+cd repo
+```
+Once inside the repo, run the following command on your terminal to install the virtual environment as well as the supporting packages.
+```
+conda env create -f environment.yaml
+```
+Activate the environment
+```
+conda activate fresh_produce
+```
+Once the virtual environment has been activated the web application is ready to be launched.
+```
+streamlit run Inventory-Data-Streamlit-App-master/Inventory_Planner_Demo.py
+```
+or
+```
+cd Inventory-Data-Streamlit-App-master
+streamlit run Inventory_Planner_Demo.py
+```
