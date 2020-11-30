@@ -1,10 +1,14 @@
 # Inventory Management
 
 ## 1. Introduction - A Freshgram analytical approach
+The web application can be viewed online [here](https://freshgram.herokuapp.com/)
+Inventory management is one of the central problems in retail. Frequently inventory managers need to decide how many items of each product they need to order from suppliers. A manual ordering of products cannot scale to thousands of products and cannot take into account changing demands and many business constraints and costs. Existing inventory optimization systems are not scalable enough to meet the requirements of large retailers. Also, these systems are not flexible enough and cannot incorporate important business goals and constraints.
 
 <p align="center">
 <img width="80%" height="50%" src="imgs/fresh_produce.jpeg">
 </p>
+
+Data scientists and developers will tailor this solution to business goals and constraints of big retailers and will build custom large-scale inventory optimization systems on top of it. These systems will speed up the ordering process and will improve widely used inventory management business metrics (e.g. normalized revenue per day and inventory turnover).
 
 This project focuses on inventory management for fresh produce products.
 
@@ -35,7 +39,9 @@ The web application has two options, below is the snap shot of the **trend** opt
 
 The information relayed on the dashboards include, based on the product of interest over a specified period, the change in average pricing as well as pricing range, quantity sold, and quantity remaining in inventory.
 
-# NEED TO ADD INVETORY PLANNING SNAP SHOT
+![inventory_planning_one](imgs/view_two.png)
+
+![inventory_planning_two](imgs/view_three.png)
 
 ## 4. Getting Started
 This section is a step-by-step guide on how to launch the Freshgram web application on your local machine. This assumes an Anaconda environment is already installed on your local machine.
