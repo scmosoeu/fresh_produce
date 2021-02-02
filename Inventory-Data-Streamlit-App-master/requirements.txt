@@ -14,7 +14,7 @@ backcall==0.2.0
 backoff==1.10.0
 bandersnatch==4.3.0
 base58==2.0.1
-bleach==3.2.1
+bleach==3.3.0
 blinker==1.4
 bokeh==2.2.1
 boto3==1.15.7
