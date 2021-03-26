@@ -120,7 +120,7 @@ python-socks==1.1.0
 pytz==2020.1
 pywin32==228
 pywinpty==0.5.7
-PyYAML==5.3.1
+PyYAML==5.4
 pyzmq==19.0.2
 redis==3.5.3
 requests==2.24.0
