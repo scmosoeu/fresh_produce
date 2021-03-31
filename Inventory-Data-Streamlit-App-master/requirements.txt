@@ -68,7 +68,7 @@ jupyter-client @ file:///tmp/build/80754af9/jupyter_client_1601311786391/work
 jupyter-core==4.6.3
 jupyterlab-pygments==0.1.1
 kiwisolver==1.2.0
-lxml==4.5.2
+lxml==4.6.3
 MarkupPy==1.14
 MarkupSafe==1.1.1
 matplotlib @ file:///C:/ci/matplotlib-base_1603355780617/work
