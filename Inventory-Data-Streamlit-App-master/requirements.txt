@@ -30,7 +30,7 @@ Cython==0.29.17
 decorator==4.4.2
 defusedxml==0.6.0
 diff-match-patch==20200713
-Django==2.2.16
+Django==2.2.27
 django-cleanup==5.1.0
 django-currentuser==0.5.1
 django-filter==2.3.0
