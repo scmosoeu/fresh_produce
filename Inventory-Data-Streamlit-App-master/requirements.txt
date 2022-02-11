@@ -99,7 +99,7 @@ plotly==4.10.0
 pmdarima==1.7.1
 prometheus-client==0.8.0
 prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1602688806899/work
-protobuf==3.13.0
+protobuf==3.15.0
 psycopg2==2.8.6
 PuLP @ file:///D:/bld/pulp_1600089948353/work
 pulp-python==3.0.0b11
