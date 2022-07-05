@@ -105,7 +105,7 @@ PuLP @ file:///D:/bld/pulp_1600089948353/work
 pulp-python==3.0.0b11
 pulpcore==3.7.1
 pyarrow==1.0.1
-pycares==3.1.1
+pycares==4.2.0
 pycparser==2.20
 pydeck==0.5.0b1
 Pygments @ file:///tmp/build/80754af9/pygments_1600458456400/work
