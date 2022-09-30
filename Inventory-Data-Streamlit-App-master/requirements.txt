@@ -62,7 +62,7 @@ jdcal==1.4.1
 jedi @ file:///C:/ci/jedi_1598353661586/work
 Jinja2==2.11.2
 jmespath==0.10.0
-joblib==0.16.0
+joblib==1.2.0
 jsonschema==3.2.0
 jupyter-client @ file:///tmp/build/80754af9/jupyter_client_1601311786391/work
 jupyter-core==4.6.3
